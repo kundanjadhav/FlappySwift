@@ -188,7 +188,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         bird.position = CGPoint(x: self.frame.size.width / 2.5, y: self.frame.midY)
         bird.physicsBody?.velocity = CGVector( dx: 0, dy: 0 )
         bird.physicsBody?.collisionBitMask = worldCategory | pipeCategory
-        bird.speed = 1.0
+        bird.speed = 2.0
         bird.zRotation = 0.0
         
         // Remove all existing pipes
@@ -202,13 +202,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         scoreLabelNode.text = String(score)
         
         // Restart animation
-        moving.speed = 1
+        moving.speed = 2
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if moving.speed > 0  {
             for _ in touches { // do we need all touches?
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 20))
             }
         } else if canRestart {
             self.resetScene()
